@@ -8,13 +8,13 @@ function Devise(name) {
 
 }
 
-Devise.prototype.putOn = function() {
+Devise.prototype.turnOn = function() {
 
   console.log(this.name + ' is ON.');
 
 }
 
-Devise.prototype.putOff = function() {
+Devise.prototype.turnOff = function() {
 
   console.log(this.name + ' is OFF.');
 
@@ -33,23 +33,23 @@ BigDevice.prototype = new Devise();
 BigDevice.prototype.brightness = function() {
 
   let brightness = +prompt('Enter brightness', 10);
-  console.log(this.name + ' has brightness is ' + brightness + '. Power: ' + this.power + '.');
+  console.log(`${this.name} has brightness is ${brightness}. Power: ${this.power}.`);
 
 }
 
 BigDevice.prototype.setText = function() {
 
   let text = prompt('Enter text', 'abc');
-  console.log(this.name + ' text: ' + text + '.');
+  console.log(`${this.name} text: ${text}.`);
 
 }
 
 const computer = new BigDevice ('computer');
 
-computer.putOn();
+computer.turnOn();
 computer.brightness();
 computer.setText();
-computer.putOff();
+computer.turnOff();
 
 
 // class for small devise
@@ -57,16 +57,15 @@ function SmallDevice(name) {
 
   this.name = name;
   this.power = '80 W';
-
+  this.countChangeBulb = 0;
 }
 
 SmallDevice.prototype = new Devise();
 
-let count = 1;
 SmallDevice.prototype.changeBulb = function() {
 
-  console.log(this.name + ' light bulb is changed (' + count + ' time).');
-  ++count;
+  ++this.countChangeBulb;
+  console.log(`${this.name} light bulb is changed ${this.countChangeBulb} time's.`);
 
 }
 
